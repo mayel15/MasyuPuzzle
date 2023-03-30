@@ -1,22 +1,111 @@
 import 'package:flutter/material.dart';
 void main() => runApp(new MyApp());
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return MaterialApp(
+      routes: {
+        '/': (context) => Accueil(),
+        //'/screengame': (context) => MyScreenGame(),
+      },
+    );
+  }
+}
 
+
+class Accueil extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var largeurWidthEcran = MediaQuery.of(context).size.width;
+    var hauteurHeightEcran = MediaQuery.of(context).size.height;
     return MaterialApp(
       title: 'Masyu',
       home: Scaffold(
         //Here you can set what ever background color you need.
         backgroundColor: Color(0xFFea5455),
-        body: Column(
+        body: Center(child : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Masyu Puzzle",
               style: TextStyle(fontFamily: 'Langar',fontSize: 55)),
-              Image.asset('accueil_masyu.jpg'),
+
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15.0),
+                child: Image.asset(
+                  'asset/image/accueil_masyu.jpg',
+                  height: hauteurHeightEcran*0.250,
+                  width: largeurWidthEcran*0.500,
+                ),
+              ),
+              SizedBox(height: hauteurHeightEcran*0.04),
+        SizedBox(
+            height: hauteurHeightEcran*0.085,
+            width: largeurWidthEcran*0.72,
+            child :ClipRRect(
+            borderRadius: BorderRadius.circular(15.0),
+            child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+              ),
+              ),
+        ),
+              SizedBox(height: hauteurHeightEcran*0.02),
+              SizedBox(
+                height: hauteurHeightEcran*0.085,
+                width: largeurWidthEcran*0.72,
+                child :ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                    child: const Text('Intermediaire',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                  ),
+                ),
+              ),
+              SizedBox(height: hauteurHeightEcran*0.02),
+              SizedBox(
+                height: hauteurHeightEcran*0.085,
+                width: largeurWidthEcran*0.72,
+                child :ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                    child: const Text('Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                  ),
+                ),
+              ),
+              SizedBox(height: hauteurHeightEcran*0.02),
+              SizedBox(
+                height: hauteurHeightEcran*0.085,
+                width: largeurWidthEcran*0.72,
+                child :ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                    child: const Text('Démoniquaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                  ),
+                ),
+              ),
+              SizedBox(height: hauteurHeightEcran*0.02),
+              SizedBox(
+                height: hauteurHeightEcran*0.085,
+                width: largeurWidthEcran*0.72,
+                child :ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                    child: const Text('Parties enregitrées',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                  ),
+                ),
+              ),
             ]
         ),
+      ),
       ),
     );
   }
