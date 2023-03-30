@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/screen_game.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,7 +8,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => Accueil(),
-        //'/screengame': (context) => MyScreenGame(),
+        '/screengame': (context) => MyScreenGame(),
       },
     );
   }
@@ -45,7 +46,10 @@ class Accueil extends StatelessWidget {
             child :ClipRRect(
             borderRadius: BorderRadius.circular(15.0),
             child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.pushNamed(
+                  context,
+                  '/screengame',
+                );},
                 style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                 child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
               ),
@@ -58,7 +62,10 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.pushNamed(
+                      context,
+                      '/screengame',
+                    );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Intermediaire',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -71,7 +78,10 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                      onPressed: () {Navigator.pushNamed(
+                        context,
+                        '/screengame',
+                      );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -84,9 +94,12 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                      onPressed: () {Navigator.pushNamed(
+                        context,
+                        '/screengame',
+                      );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                    child: const Text('Démoniquaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                    child: const Text('Démoniaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
                 ),
               ),
@@ -97,7 +110,7 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                      onPressed: () {},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Parties enregitrées',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
