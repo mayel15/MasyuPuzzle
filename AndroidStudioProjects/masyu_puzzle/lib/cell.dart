@@ -4,8 +4,10 @@ import 'enum.dart';
 class Cell{
   int x = -1;
   int y = -1 ;
+  int nbVoisins = 0;
   Directions entree = Directions.none;
   Directions sortie = Directions.none;
+  
 
   CellType color = CellType.none;
 
@@ -47,7 +49,9 @@ class Cell{
   }
 
   String toString(){
-    return "(x:$x|y:$y|entree:$entree|sortie:$sortie)";
+    //return "(x:$x|y:$y|entree:$entree|sortie:$sortie)";
+    return '$color';
+    
   }
 
 } 
