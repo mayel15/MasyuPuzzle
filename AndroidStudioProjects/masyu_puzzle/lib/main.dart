@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masyu_puzzle/screen_game.dart';
+
+import 'aide.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,6 +11,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Accueil(),
         '/screengame': (context) => MyScreenGame(),
+        '/aide': (context) => Aide()
       },
     );
   }

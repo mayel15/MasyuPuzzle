@@ -35,18 +35,18 @@ class _MyScreenGame extends State<MyScreenGame>{
                           context,
                           '/',
                         );},
-                      child: Text('Retour',   style: TextStyle(fontWeight: FontWeight.bold)),
                       style: ElevatedButton.styleFrom(shape: StadiumBorder(), backgroundColor: Color(0xFF002B5B)),
+                      child: const Text('Retour',   style: TextStyle(fontWeight: FontWeight.bold)),
                     ),
                   ),
                 ),
-                Text("Facile"),
+                const Text("Facile"),
               ],
             ),
           ),
           Container(
-            color: Color(0xffEA5455),
-            child: Text("⏱️00:00:22",style: TextStyle(fontWeight: FontWeight.bold)),
+            color: const Color(0xffEA5455),
+            child: const Text("⏱️00:00:22",style: TextStyle(fontWeight: FontWeight.bold)),
           ),
             SizedBox(height: hauteurHeightEcran*0.02),
 
@@ -111,7 +111,10 @@ class _MyScreenGame extends State<MyScreenGame>{
                       child :ClipRRect(
                         borderRadius: BorderRadius.circular(15.0),
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {Navigator.pushNamed(
+                            context,
+                            '/aide',
+                          );},
                           child: Text('Aide',   style: TextStyle(fontWeight: FontWeight.bold)),
                           style: ElevatedButton.styleFrom(shape: StadiumBorder(), backgroundColor: Color(0xFF002B5B)),
                         ),
