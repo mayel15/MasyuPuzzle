@@ -27,32 +27,17 @@ class _MyScreenGame extends State<MyScreenGame> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: SizedBox(
-                    width: largeurWidthEcran * 0.1,
+                    width: largeurWidthEcran * 0.175,
                     height: hauteurHeightEcran * 0.06,
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pushNamed(
                           context,
                           '/',
-<<<<<<< HEAD
-                        );},
-                      style: ElevatedButton.styleFrom(shape: StadiumBorder(), backgroundColor: Color(0xFF002B5B)),
-                      child: const Text('Retour',   style: TextStyle(fontWeight: FontWeight.bold)),
-                    ),
-                  ),
-                ),
-                const Text("Facile"),
-              ],
-            ),
-          ),
-          Container(
-            color: const Color(0xffEA5455),
-            child: const Text("⏱️00:00:22",style: TextStyle(fontWeight: FontWeight.bold)),
-=======
                         );
                       },
                       child: Text('Retour',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontFamily: 'Langar',fontSize: 18)),
                       style: ElevatedButton.styleFrom(
                           shape: StadiumBorder(),
                           backgroundColor: Color(0xFF002B5B)),
@@ -60,14 +45,16 @@ class _MyScreenGame extends State<MyScreenGame> {
                   ),
                 ),
               ),
-              Text("Facile"),
+              Text("Facile",
+                  style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
             ],
           ),
         ),
         Container(
           color: Color(0xffEA5455),
           child:
-              Text("⏱️00:00:22", style: TextStyle(fontWeight: FontWeight.bold)),
+          Text("⏱️00:00:22",
+              style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
         ),
         SizedBox(height: hauteurHeightEcran * 0.02),
         SizedBox(
@@ -76,9 +63,8 @@ class _MyScreenGame extends State<MyScreenGame> {
           child: ElevatedButton(
             onPressed: () {},
             child: Text('Ma grille',
-                style: TextStyle(fontWeight: FontWeight.bold)),
+                style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
             style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF002B5B)),
->>>>>>> 8f437ced71804e2df62652e7316cbcd78436f4e8
           ),
         ),
         SizedBox(height: hauteurHeightEcran * 0.015),
@@ -92,7 +78,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text('Soumettre',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   style: ElevatedButton.styleFrom(
                       shape: StadiumBorder(),
                       backgroundColor: Color(0xFF002B5B)),
@@ -108,7 +94,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                 child: ElevatedButton(
                   onPressed: () {},
                   child: Text('Enregistrer',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   style: ElevatedButton.styleFrom(
                       shape: StadiumBorder(),
                       backgroundColor: Color(0xFF002B5B)),
@@ -127,7 +113,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text('Reset',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                       style: ElevatedButton.styleFrom(
                           shape: StadiumBorder(),
                           backgroundColor: Color(0xFF002B5B)),
@@ -142,52 +128,13 @@ class _MyScreenGame extends State<MyScreenGame> {
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Text('Aide',
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                          style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                       style: ElevatedButton.styleFrom(
                           shape: StadiumBorder(),
                           backgroundColor: Color(0xFF002B5B)),
                     ),
                   ),
                 ),
-<<<<<<< HEAD
-
-                SizedBox(height: hauteurHeightEcran*0.015),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-
-                  children: [
-                    SizedBox(
-                      width: largeurWidthEcran*0.5,
-                      height: hauteurHeightEcran*0.06,
-                      child :ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Reset',   style: TextStyle(fontWeight: FontWeight.bold)),
-                          style: ElevatedButton.styleFrom(shape: StadiumBorder(), backgroundColor: Color(0xFF002B5B)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: largeurWidthEcran*0.5,
-                      height: hauteurHeightEcran*0.06,
-                      child :ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: ElevatedButton(
-                          onPressed: () {Navigator.pushNamed(
-                            context,
-                            '/aide',
-                          );},
-                          child: Text('Aide',   style: TextStyle(fontWeight: FontWeight.bold)),
-                          style: ElevatedButton.styleFrom(shape: StadiumBorder(), backgroundColor: Color(0xFF002B5B)),
-                        ),
-                      ),
-                    ),
-
-                  ],
-                )
-=======
->>>>>>> 8f437ced71804e2df62652e7316cbcd78436f4e8
               ],
             )
           ],
