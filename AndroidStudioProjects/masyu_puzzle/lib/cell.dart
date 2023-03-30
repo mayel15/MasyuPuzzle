@@ -47,7 +47,7 @@ class Cell{
   }
 
   String toString(){
-    return "x: $x ; y:$y ; entree: $entree; sortie: $sortie";
+    return "(x:$x|y:$y|entree:$entree|sortie:$sortie)";
   }
 
 } 
