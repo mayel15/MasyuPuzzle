@@ -21,7 +21,7 @@ class Grid{
     Cell c = Cell();
     for(int i=0;i<listCells.length; i++){
       for (int j=0; j<listCells[0].length;j++){
-
+        
       }
     }
   }
