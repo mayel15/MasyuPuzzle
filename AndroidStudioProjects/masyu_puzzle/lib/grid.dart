@@ -3,8 +3,7 @@ import 'enum.dart';
 import 'dart:math';
 
 class Grid{
-  /*int nbRows;
-  int nbColumns;*/
+  // matrix for represent a grid 
   List<List<Cell>> listCells = [];
   
 
@@ -48,12 +47,15 @@ class Grid{
       if(listCells[x][y].color != Directions.none){
         if(ch %2 == 0){
           listCells[x][y] = cBlack; // case with black color 
+          listCells[x][y].x = x;
+          listCells[x][y].y = y;
         }
         else{
           listCells[x][y] = cWhite; // cells with white color
+          listCells[x][y].x = x;
+          listCells[x][y].y = y;
         }
-      }
-      
+      } 
     }
     
 
