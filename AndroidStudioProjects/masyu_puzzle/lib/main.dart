@@ -32,7 +32,7 @@ class Accueil extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Masyu Puzzle",
-              style: TextStyle(fontFamily: 'Langar',fontSize: 55)),
+                  style: TextStyle(fontFamily: 'Langar',fontSize: 55)),
 
               ClipRRect(
                 borderRadius: BorderRadius.circular(15.0),
@@ -43,21 +43,21 @@ class Accueil extends StatelessWidget {
                 ),
               ),
               SizedBox(height: hauteurHeightEcran*0.04),
-        SizedBox(
-            height: hauteurHeightEcran*0.085,
-            width: largeurWidthEcran*0.72,
-            child :ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: ElevatedButton(
-                onPressed: () {Navigator.pushNamed(
-                  context,
-                  '/screengame',
-                );},
-                style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+              SizedBox(
+                height: hauteurHeightEcran*0.085,
+                width: largeurWidthEcran*0.72,
+                child :ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {Navigator.pushNamed(
+                      context,
+                      '/screengame',
+                    );},
+                    style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
+                    child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                  ),
+                ),
               ),
-              ),
-        ),
               SizedBox(height: hauteurHeightEcran*0.02),
               SizedBox(
                 height: hauteurHeightEcran*0.085,
@@ -81,10 +81,10 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                      onPressed: () {Navigator.pushNamed(
-                        context,
-                        '/screengame',
-                      );},
+                    onPressed: () {Navigator.pushNamed(
+                      context,
+                      '/screengame',
+                    );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -97,10 +97,10 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                      onPressed: () {Navigator.pushNamed(
-                        context,
-                        '/screengame',
-                      );},
+                    onPressed: () {Navigator.pushNamed(
+                      context,
+                      '/screengame',
+                    );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Démoniaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -113,7 +113,7 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                      onPressed: () {},
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Parties enregitrées',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -121,7 +121,7 @@ class Accueil extends StatelessWidget {
               ),
             ]
         ),
-      ),
+        ),
       ),
     );
   }

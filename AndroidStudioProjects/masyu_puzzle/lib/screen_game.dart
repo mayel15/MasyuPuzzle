@@ -15,7 +15,7 @@ class _MyScreenGame extends State<MyScreenGame> {
   Widget build(BuildContext context) {
     double largeurWidthEcran = MediaQuery.of(context).size.width;
     double hauteurHeightEcran = MediaQuery.of(context).size.height;
-    double opaciteWin = 0;
+    double opaciteWin = 1;
     bool isWin = false;
     return Scaffold(
         backgroundColor: Color(0xffEA5455),
@@ -23,7 +23,7 @@ class _MyScreenGame extends State<MyScreenGame> {
             child: Stack(
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(0, hauteurHeightEcran * 0.04, 0, 0),
+                  padding: EdgeInsets.fromLTRB(0, hauteurHeightEcran * 0.01, 0, 0),
                   child: Column(children: [
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -33,7 +33,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: SizedBox(
-                                width: largeurWidthEcran * 0.175,
+                                width: largeurWidthEcran * 0.250,
                                 height: hauteurHeightEcran * 0.06,
                                 child: ElevatedButton(
                                   onPressed: () {
@@ -62,8 +62,8 @@ class _MyScreenGame extends State<MyScreenGame> {
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.02),
                     SizedBox(
-                      height: hauteurHeightEcran * 0.55,
-                      width: largeurWidthEcran * 0.9,
+                      height: hauteurHeightEcran * 0.45,
+                      width: largeurWidthEcran * 0.95,
                       child: ElevatedButton(
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
@@ -72,7 +72,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                             style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
                       ),
                     ),
-                    SizedBox(height: hauteurHeightEcran * 0.03),
+                    SizedBox(height: hauteurHeightEcran * 0.09),
                     Column(
                       children: [
                         SizedBox(
@@ -82,7 +82,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                             borderRadius: BorderRadius.circular(15.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                opaciteWin = 1;
+                                opaciteWin = 0;
                                 isWin = true;
                                 print("C'est gagné! ");
                                 print("Opacité:  " + opaciteWin.toString());
@@ -140,7 +140,10 @@ class _MyScreenGame extends State<MyScreenGame> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                    onPressed: () {Navigator.pushNamed(
+                                      context,
+                                      '/aide',
+                                    );},
                                   child: Text('Aide',
                                       style: TextStyle(
                                           fontFamily: 'Langar', fontSize: 28)),
@@ -156,7 +159,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                     ),
                   ]),
                 ),
-                if(!isWin) BackdropFilter(
+                if(isWin) BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
