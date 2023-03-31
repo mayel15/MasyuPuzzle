@@ -1,10 +1,10 @@
-enum Directions{
+/*enum Directions{
   top,
   bottom, 
   left, 
   right,
   none
-}
+}*/
 
 enum CellType{
   black,
