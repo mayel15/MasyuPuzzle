@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/partie_enregistre.dart';
 import 'package:masyu_puzzle/screen_game.dart';
 
 import 'aide.dart';
@@ -11,7 +12,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => Accueil(),
         '/screengame': (context) => MyScreenGame(),
-        '/aide': (context) => Aide()
+        '/aide': (context) => Aide(),
+        '/enregistrepartie': (context) =>  EnregistrePartie(),
       },
     );
   }
@@ -113,7 +115,10 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.pushNamed(
+                      context,
+                      '/enregistrepartie',
+                    );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Parties enregitrées',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
