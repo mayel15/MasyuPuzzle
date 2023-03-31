@@ -76,7 +76,7 @@ class Game {
       lines.add(lineRight3);
 
       // last column
-      Cell currentCell4 = grid.listCells[i][size - 1];
+      Cell currentCell4 = grid.listCells.elementAt(i).elementAt(size - 1);
       Cell top4 = grid.listCells[i - 1][size - 1];
       Cell bottom4 = grid.listCells[i + 1][size - 1];
       Cell left4 = grid.listCells[i][size - 2];
