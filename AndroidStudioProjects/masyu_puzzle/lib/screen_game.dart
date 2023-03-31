@@ -156,7 +156,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                     ),
                   ]),
                 ),
-                if(isWin) BackdropFilter(
+                if(!isWin) BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
