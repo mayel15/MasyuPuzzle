@@ -5,14 +5,14 @@ class Cell{
   int x = -1;
   int y = -1 ;
   int nbVoisins = 0;
-  /*Directions entree = Directions.none;
-  Directions sortie = Directions.none;*/
+  Directions entree = Directions.none;
+  Directions sortie = Directions.none;
   
 
   CellType color = CellType.none;
 
 
-  Cell();
+  Cell(this.x, this.y, this.color);
   
   //Cell(this.x, this.y, this.direction);
 
@@ -32,7 +32,7 @@ class Cell{
     this.y = y;
   }
 
-  /*String getEntree(){
+  String getEntree(){
     return "$entree";
   }
 
@@ -46,7 +46,7 @@ class Cell{
 
   void setSortie(Directions sortie){
     this.sortie = sortie;
-  }*/
+  }
 
   String toString(){
     //return "(x:$x|y:$y|entree:$entree|sortie:$sortie)";
@@ -69,6 +69,6 @@ class Cell{
 } 
 
 void main(){
-  Cell c = Cell(); 
+  Cell c = Cell(-1, -1, CellType.none); 
   print(c.getY());
 }

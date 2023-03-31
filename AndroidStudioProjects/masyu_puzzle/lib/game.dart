@@ -195,5 +195,5 @@ void main(){
   game.grid.gridGenerator(5);
   game.linkedCells();
   print(game.grid.listCells);
-  print(game.lines.length);
+  print(game.lines);
 }
