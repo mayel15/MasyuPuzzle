@@ -4,9 +4,12 @@ import 'enum.dart';
 class Cell{
   int x ;
   int y ;
-  Directions direction;
+  Directions entree;
+  Directions sortie;
+  CellType color;
 
-  Cell(this.x, this.y, this.direction);
+
+  Cell(this.x, this.y, this.entree, this.sortie, this.color);
 
   String getX() {
     return "$x";
@@ -24,9 +27,23 @@ class Cell{
     this.y = y;
   }
 
-  String getDirection(){
-    return "$direction";
+  String getentree(){
+    return "$entree";
   }
+
+  String getsortie(){
+    return "$sortie";
+  }
+
+
+  String getcolor(){
+    return "$color";
+  }
+
+  String setcolor(CellType e){
+    return "$color";
+
+
 
 } 
 

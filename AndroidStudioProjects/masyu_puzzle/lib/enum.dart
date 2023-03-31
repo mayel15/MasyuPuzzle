@@ -5,7 +5,7 @@ enum Directions{
   right
 }
 
-enum CelleType{
+enum CellType{
   black,
   white,
   none
