@@ -58,22 +58,25 @@ class Grid{
     }
 
     int nbPoints = ((nb*nb)*20)~/100; // the number of cells to change the color in black or white 
+    print(nbPoints);
     int row, col, ch;
     var rand = new Random();
-    for(int i=0; i<((nbPoints/4).toInt()); i++){
-      row = rand.nextInt(nb-2)+1;
-      col = rand.nextInt(nb-2)+1;
-      if(listCells.elementAt(row).elementAt(col).color == CellType.none){
-        listCells.elementAt(row).elementAt(col).color = CellType.white;
-        listCells.elementAt(row).elementAt(col+((nb-col)/2).toInt()).color = CellType.white;
-      }
+    for(int i=0; i<(nbPoints*0.5).toInt(); i++){
+      do{
+        row = rand.nextInt(nb-2)+1;
+        col = rand.nextInt(nb-2)+1;
+      }while(listCells.elementAt(row).elementAt(col).color != CellType.none);
+      
+      listCells.elementAt(row).elementAt(col).color = CellType.white;
+      /*listCells.elementAt(row).elementAt(col+((nb-col)/2).toInt()).color = CellType.white;*/ 
     }
-    for(int i=0; i<nb-(nbPoints/2).toInt(); i++){
-      row = rand.nextInt(nb);
-      col = rand.nextInt(nb);
-      if(listCells.elementAt(row).elementAt(col).color == CellType.none){
-        listCells.elementAt(row).elementAt(col).color = CellType.black;
-      }
+    for(int i=0; i<nbPoints-(nbPoints*0.5).toInt(); i++){
+      do{
+        row = rand.nextInt(nb);
+        col = rand.nextInt(nb);
+      }while(listCells.elementAt(row).elementAt(col).color != CellType.none);
+      
+      listCells.elementAt(row).elementAt(col).color = CellType.black;
     }
   }
 
