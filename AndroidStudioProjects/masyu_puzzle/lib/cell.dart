@@ -53,6 +53,10 @@ class Cell{
 } 
 
 void main(){
+  /* mini test */
   Cell c = Cell(-1, -1, CellType.none); 
   print(c.getY());
+
+  /* test unitaires */
+  
 }
