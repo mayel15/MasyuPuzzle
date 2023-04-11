@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/MyAppData.dart';
+import 'package:masyu_puzzle/MyGrille.dart';
+import 'package:masyu_puzzle/game.dart';
+import 'package:masyu_puzzle/grid.dart';
 import 'package:masyu_puzzle/partie_enregistre.dart';
 import 'package:masyu_puzzle/screen_game.dart';
 
@@ -6,11 +10,12 @@ import 'aide.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => Accueil(),
+        '/': (context) => MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
         '/screengame': (context) => MyScreenGame(),
         '/aide': (context) => Aide(),
         '/enregistrepartie': (context) =>  EnregistrePartie(),

@@ -10,6 +10,10 @@ class Game {
 
   Game();
 
+  Grid getGrid(){
+    return grid;
+  }
+
   void linkedCells() {
     int size = grid.listCells.length;
     // cell top left
@@ -132,6 +136,20 @@ class Game {
       if (((l.c1 == c) || l.c2 == c) && (l.linked == true)) {
         c.setNbVoisins();
       }
+    }
+  }
+
+  List<Cell> liste_choice_button = [];
+  void clickButton(Cell cell){
+    if(liste_choice_button.length == 0){
+      liste_choice_button.add(cell);
+      print("premier click");
+    }else{
+      print("deuxieme click");
+      play(liste_choice_button[0], cell);
+      liste_choice_button.removeAt(0);
+      this.lines.forEach((element)=>{ print(element)});
+
     }
   }
 
