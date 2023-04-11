@@ -58,9 +58,9 @@ class Grid{
     }
 
     int nbPoints = ((nb*nb)*20)~/100; // the number of cells to change the color in black or white 
-    print(nbPoints);
     int row, col, ch;
     var rand = new Random();
+
     for(int i=0; i<(nbPoints*0.5).toInt(); i++){
       do{
         row = rand.nextInt(nb-2)+1;
@@ -92,7 +92,7 @@ void main(){
   //List<List<Cell>> l = [[c1], [c2]];
   Grid g = Grid();
   //var rand = new Random();
-  g.gridGenerator(7);
+  g.gridGenerator(4);
   //print(g.listCells);
   //print(g.listCells.elementAt(0).elementAt(0).getColor());
   //g.listCells.elementAt(0).elementAt(0).setColor(CellType.black);
