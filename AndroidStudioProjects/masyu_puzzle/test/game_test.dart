@@ -17,17 +17,21 @@ void main() {
   group('Game tests', () {
     test('linkedCells should add the correct number of lines to the game', () {
       final game = Game();
+      int taille = 3;
+      game.grid.gridGenerator(taille);
       game.linkedCells();
       final gridSize = game.grid.listCells.length;
-      final expectedLines = gridSize * gridSize * 4 - gridSize * 4;
-      expect(game.lines.length, equals(expectedLines));
+      //final expectedLines = gridSize * gridSize * 4 - gridSize * 4;
+      final expectedLines = ((gridSize - 1) * gridSize )* 2;
+      final nbLines = game.lines.length/2; // delete the doubled lines
+      expect(nbLines, equals(expectedLines));
     });
 
     test('checkNbvoisins should return the correct number of neighbors for each cell', () {
       final game = Game();
       game.grid.listCells = [
-        [Cell(0, 0, CellType.none), Cell(0, 1, CellType.none), Cell(0, 2, CellType.none)],
-        [Cell(1, 0, CellType.none), Cell(1, 1, CellType.none), Cell(1, 2, CellType.none)],
+        [Cell(0, 0, CellType.black), Cell(0, 1, CellType.none), Cell(0, 2, CellType.none)],
+        [Cell(1, 0, CellType.none), Cell(1, 1, CellType.white), Cell(1, 2, CellType.none)],
         [Cell(2, 0, CellType.none), Cell(2, 1, CellType.none), Cell(2, 2, CellType.none)]
       ];
       game.linkedCells();

@@ -265,7 +265,14 @@ class Game {
 }
 
 void main() {
-  Game game = Game();
+  final game = Game();
+      int taille = 3;
+      game.grid.gridGenerator(taille);
+      game.linkedCells();
+      final gridSize = game.grid.listCells.length;
+      final expectedLines = gridSize * gridSize * 4 - gridSize * 4;
+      print(expectedLines);
+  /*Game game = Game();
   game.grid.gridGenerator(3);
   game.linkedCells();
 
@@ -291,5 +298,5 @@ void main() {
   // print(game.lines);
   //print(game.checkWin());
 
-  // print();
+  // print();*/
 }
