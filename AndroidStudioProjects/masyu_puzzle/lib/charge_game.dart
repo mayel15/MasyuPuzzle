@@ -48,11 +48,12 @@ Game chargeGame(){
   Game game = Game();
   game.setGrid(chargeGrid());
   game.setLines(chargeLines());
+  print("Votre partie a été bien chargée !");
   return game; 
 }
 
 void main() {
 
-  //chargeGame();
-  //print(chargeGrid());
+  chargeGame();
+  print(chargeGrid().listCells);
 }
