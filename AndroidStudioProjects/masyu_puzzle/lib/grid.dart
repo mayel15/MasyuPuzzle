@@ -92,7 +92,7 @@ void main(){
   //List<List<Cell>> l = [[c1], [c2]];
   Grid g = Grid();
   //var rand = new Random();
-  g.gridGenerator(4);
+  g.gridGenerator(6);
   //print(g.listCells);
   //print(g.listCells.elementAt(0).elementAt(0).getColor());
   //g.listCells.elementAt(0).elementAt(0).setColor(CellType.black);

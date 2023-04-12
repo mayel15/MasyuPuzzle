@@ -50,13 +50,18 @@ class Cell{
     return nbVoisins;
   }
 
+  // to be able to convert in json
+  Map<String, dynamic> toJson() => {'x': x, 'y': y, 'color': color.toString().split('.').last};
+
+  // to be able to get the values from a json
+  factory Cell.fromJson(Map<String, dynamic> json) {
+    return Cell(json['x'], json['y'], fromStringToCellType(json['color']));
+  }
+
 } 
 
 void main(){
   /* mini test */
   Cell c = Cell(-1, -1, CellType.none); 
-  print(c.getY());
-
-  /* test unitaires */
-  
+  print(c.getY()); 
 }
