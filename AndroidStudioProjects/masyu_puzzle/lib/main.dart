@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
+        //'/': (context) => MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
+        '/': (context) => Accueil(),
         '/screengame': (context) => MyScreenGame(),
         '/aide': (context) => Aide(),
         '/enregistrepartie': (context) =>  EnregistrePartie(),
