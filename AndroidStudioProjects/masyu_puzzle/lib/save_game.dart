@@ -53,5 +53,5 @@ void main() {
   }*/
   
   saveGame(g);
-  //saveLines(g.lines);
+  saveLines(g.lines);
 }
