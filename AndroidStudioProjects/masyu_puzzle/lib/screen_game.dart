@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/chrono.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class MyScreenGame extends StatefulWidget {
   const MyScreenGame({super.key});
@@ -11,12 +13,39 @@ class MyScreenGame extends StatefulWidget {
 }
 
 class _MyScreenGame extends State<MyScreenGame> {
+  late AudioPlayer _audioPlayer;
+  late AudioCache _audioCache;
+
   @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _audioCache = AudioCache(fixedPlayer: _audioPlayer, prefix: 'asset/music/');
+
+    _playAudio();
+  }
+
+  void _playAudio() async {
+    await _audioCache.loop('game_song.mp3');
+  }
+
+  void _stopAudio() async {
+    await _audioPlayer.stop();
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
+    Chronometer c1 = Chronometer();
     double largeurWidthEcran = MediaQuery.of(context).size.width;
     double hauteurHeightEcran = MediaQuery.of(context).size.height;
     double opaciteWin = 1;
     bool isWin = false;
+
     return Scaffold(
         backgroundColor: Color(0xffEA5455),
         body: SafeArea(
@@ -41,6 +70,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                                       context,
                                       '/',
                                     );
+                                    _stopAudio();
                                   },
                                   style: ElevatedButton.styleFrom(
                                       shape: const StadiumBorder(),
@@ -57,8 +87,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                         ]),
                     Container(
                       color: const Color(0xffEA5455),
-                      child: const Text("⏱️00:00:22",
-                          style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
+                      child: c1,
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.02),
                     SizedBox(
@@ -82,18 +111,19 @@ class _MyScreenGame extends State<MyScreenGame> {
                             borderRadius: BorderRadius.circular(15.0),
                             child: ElevatedButton(
                               onPressed: () {
+                                _stopAudio();
                                 opaciteWin = 0;
                                 isWin = true;
                                 print("C'est gagné! ");
                                 print("Opacité:  " + opaciteWin.toString());
                                 print("isWin: " + isWin.toString());
                               },
-                              child: Text('Soumettre',
-                                  style: TextStyle(
-                                      fontFamily: 'Langar', fontSize: 28)),
                               style: ElevatedButton.styleFrom(
                                   shape: StadiumBorder(),
                                   backgroundColor: Color(0xFF002B5B)),
+                              child: const Text('Soumettre',
+                                  style: TextStyle(
+                                      fontFamily: 'Langar', fontSize: 28)),
                             ),
                           ),
                         ),
@@ -104,7 +134,8 @@ class _MyScreenGame extends State<MyScreenGame> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15.0),
                             child: ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                              },
                               style: ElevatedButton.styleFrom(
                                   shape: const StadiumBorder(),
                                   backgroundColor: const Color(0xFF002B5B)),
@@ -124,13 +155,21 @@ class _MyScreenGame extends State<MyScreenGame> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    setState(() {
+                                    });
+                                  },
                                   style: ElevatedButton.styleFrom(
                                       shape: const StadiumBorder(),
-                                      backgroundColor: Color(0xFF002B5B)),
-                                  child: const Text('Reset',
-                                      style: TextStyle(
-                                          fontFamily: 'Langar', fontSize: 28)),
+                                      backgroundColor: Color(0xFF002B5B)
+                                  ),
+                                  child: const Text(
+                                    'Reset',
+                                    style: TextStyle(
+                                        fontFamily: 'Langar',
+                                        fontSize: 28
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

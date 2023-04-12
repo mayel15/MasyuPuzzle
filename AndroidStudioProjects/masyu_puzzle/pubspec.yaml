@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  audioplayers: ^0.20.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,4 +52,5 @@ flutter:
         - asset: asset/police/Langar-Regular.ttf
   assets:
     - asset/image/
+    - asset/music/
 

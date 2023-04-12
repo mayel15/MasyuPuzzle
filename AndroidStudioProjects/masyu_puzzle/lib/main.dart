@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:masyu_puzzle/MyAppData.dart';
 import 'package:masyu_puzzle/MyGrille.dart';
+import 'package:masyu_puzzle/chrono.dart';
 import 'package:masyu_puzzle/game.dart';
 import 'package:masyu_puzzle/grid.dart';
 import 'package:masyu_puzzle/partie_enregistre.dart';
@@ -9,13 +10,14 @@ import 'package:masyu_puzzle/screen_game.dart';
 import 'aide.dart';
 void main() => runApp(new MyApp());
 
+
 class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
+        '/': (context) => Accueil(),
         '/screengame': (context) => MyScreenGame(),
         '/aide': (context) => Aide(),
         '/enregistrepartie': (context) =>  EnregistrePartie(),
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
 
 
 class Accueil extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     var largeurWidthEcran = MediaQuery.of(context).size.width;
