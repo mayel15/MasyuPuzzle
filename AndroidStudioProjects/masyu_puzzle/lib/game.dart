@@ -10,6 +10,18 @@ class Game {
 
   Game();
 
+  List<Line> getLines(){
+    return lines;
+  }
+
+  void setLines(List<Line> newLines){
+    this.lines = newLines;
+  }
+
+  void setGrid(Grid newGrid){
+    this.grid = newGrid;
+  }
+
   void linkedCells() {
     int size = grid.listCells.length;
     // cell top left

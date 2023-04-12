@@ -2,6 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 import 'game.dart';
 import 'cell.dart';
+import 'line.dart';
+
+void saveLines(List<Line> lines){
+  // Convertir la matrice en une liste de maps JSON
+  List<Map<String, dynamic>> jsonGrid = List.generate(lines.length,(i) =>(lines.elementAt(i).toJson()));
+
+  // Convertir la matrice en une chaîne JSON
+  String jsonString = jsonEncode(jsonGrid);
+
+  // Enregistrer la chaîne JSON dans un fichier
+  File('lines.json').writeAsStringSync(jsonString);
+}
 
 void saveGame(Game g) {
   // Convertir la matrice en une liste de maps JSON
@@ -16,30 +28,20 @@ void saveGame(Game g) {
   // Enregistrer la chaîne JSON dans un fichier
   File('matrix.json').writeAsStringSync(jsonString);
 
-  print('Votre partie a été enregistré dans le fichier "matrix.json"');
+  saveLines(g.lines);
+
+  print('Votre partie a été enregistré 👌');
 }
 
+
+
 void main() {
-  // Créer une matrice de données
-  /*List<List<int>> matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
-  ];*/
-
-  // Convertir la matrice en une chaîne JSON
-  //String jsonMatrix = jsonEncode(matrix);
-
-  // Enregistrer la chaîne JSON dans un fichier
-  //File('matrix.json').writeAsStringSync(jsonMatrix);
-
-  //print('Matrice enregistrée dans le fichier "matrix.json".');
-
-  Game g = Game();
+  /*Game g = Game();
   g.grid.gridGenerator(5);
-  for (List<Cell> list in g.grid.listCells) {
-    print(list);
+  g.linkedCells();
+  for (Line line in g.lines) {
+    print(line);
   }
-
-  saveGame(g);
+  //saveGame(g);
+  saveLines(g.lines);*/
 }
