@@ -94,9 +94,9 @@ class _MyScreenGame extends State<MyScreenGame> {
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.02),
                     SizedBox(
-                      height: hauteurHeightEcran * 0.58,
+                      height: hauteurHeightEcran * 0.50,
                       width: largeurWidthEcran * 0.90,
-                        child: MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
+                      child: MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.05),
                     Column(
@@ -176,10 +176,10 @@ class _MyScreenGame extends State<MyScreenGame> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: ElevatedButton(
-                                    onPressed: () {Navigator.pushNamed(
-                                      context,
-                                      '/aide',
-                                    );},
+                                  onPressed: () {Navigator.pushNamed(
+                                    context,
+                                    '/aide',
+                                  );},
                                   child: Text('Aide',
                                       style: TextStyle(
                                           fontFamily: 'Langar', fontSize: 28)),

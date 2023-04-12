@@ -10,6 +10,15 @@ class MyButton extends StatelessWidget {
 
   MyButton({required this.myValue, required  this.myColor}) ;
 
+  List<double> getButtonPosition(BuildContext context) {
+    final RenderBox renderBox = context.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(Offset.zero);
+    final double x = position.dy;
+    final double y = position.dx;
+    return [x, y];
+  }
+
+
   @override
   Widget build(BuildContext context) {
     int x =  int.parse(myValue.getX());
@@ -21,7 +30,8 @@ class MyButton extends StatelessWidget {
         onPressed: () {
           //print('My value $display_cell');
           MyAppData data = MyGameContext.of(context).gameData;
-          data.data.clickButton(data.data.grid.listCells[x][y], data);
+          List<double> pos = getButtonPosition(context);
+          data.data.clickButton(data.data.grid.listCells[x][y], data, pos[0],pos[1]);
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: myColor,

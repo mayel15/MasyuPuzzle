@@ -143,16 +143,22 @@ class Game {
   }
 
   List<Cell> liste_choice_button = [];
-  bool clickButton(Cell cell, MyAppData myData){
+  List<double> liste_pos = [];
+  bool clickButton(Cell cell, MyAppData myData,double x, double y){
     if(liste_choice_button.length == 0){
       liste_choice_button.add(cell);
+      liste_pos.add(x);
+      liste_pos.add(y);
       print("premier click");
     }else{
       print("deuxieme click");
-
+      liste_pos.add(x);
+      liste_pos.add(y);
       play(liste_choice_button[0], cell);
       myData.addLigne(MyLigne( liste_choice_button[0], cell));
+      myData.addPos(Position(liste_pos[0],liste_pos[1],liste_pos[2],liste_pos[3]));
       liste_choice_button.removeAt(0);
+      liste_pos.removeRange(0, 4);
       //this.lines.forEach((element)=>{ print(element)});
       return true;
     }
