@@ -34,8 +34,8 @@ class Grid{
       row = rand.nextInt(nb);
       col = rand.nextInt(nb);
       if(listCells.elementAt(row).elementAt(col).color == CellType.none){
-        listCells.elementAt(row).elementAt(col).setX(row);
-        listCells.elementAt(row).elementAt(col).setY(col);
+        //listCells.elementAt(row).elementAt(col).setX(row);
+        //listCells.elementAt(row).elementAt(col).setY(col);
         if(ch %2 == 0){
           listCells.elementAt(row).elementAt(col).color = CellType.black;
         }
