@@ -2,14 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:masyu_puzzle/chrono.dart';
 import 'package:audioplayers/audioplayers.dart';
-=======
 import 'package:masyu_puzzle/MyAppData.dart';
 import 'package:masyu_puzzle/MyGrille.dart';
 import 'package:masyu_puzzle/game.dart';
->>>>>>> ce4a912b587fa8f98c1c4ee2b920a19cf1451a75
 
 class MyScreenGame extends StatefulWidget {
   const MyScreenGame({super.key});
