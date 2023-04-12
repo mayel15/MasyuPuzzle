@@ -38,6 +38,7 @@ class MyGrille extends StatefulWidget {
 }
 
 class _MyGrille extends State<MyGrille> {
+
   @override
   Widget build(BuildContext context) {
     double largeurWidthEcran = MediaQuery
@@ -49,36 +50,102 @@ class _MyGrille extends State<MyGrille> {
         .size
         .height;
 
-    int taille = 8;
+    int taille = 6;
 
-    Game game = MyGameContext
+    MyAppData data = MyGameContext
         .of(context)
-        .gameData
-        .data;
-    game.grid.gridGenerator(taille);
-    Grid g = game.grid;
-    game.linkedCells();
+        .gameData;
+    data.data.grid.gridGenerator(taille);
+    Grid g = data.data.grid;
+    data.data.linkedCells();
+
     return Scaffold(
-      body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 1,
-            maxCrossAxisExtent: (hauteurHeightEcran * 0.9) / taille,
+        body: Stack(
+          children: [
+            CustomPaint(
+              painter: BackgroundLinePainter(
+                0.3,
+                0.5,
+                data.lignes,
+                largeurWidthEcran,
+                hauteurHeightEcran,
+                taille,
+                data.counter
+              ),
+              child: Container(),
+            ),
+            GridView.count(
+              crossAxisCount: taille,
+              children: List.generate(taille*taille, (index) {
+                int lig = (index / g.listCells.length).floor() as int;
+                int col = index % g.listCells.length;
+                CellType myColor = g.listCells[lig][col].getColor();
+                Color color;
+                color = myColor.color;
+                return Column(
+                  children: <Widget>[ 
+                    MyButton(myValue: g.listCells[lig][col], myColor: color),
 
-
-          ),
-          itemCount: g.listCells.length * g.listCells.length,
-          itemBuilder: (BuildContext ctx, index) {
-            int lig = (index / g.listCells.length).floor() as int;
-            int col = index % g.listCells.length;
-            CellType myColor = g.listCells[lig][col].getColor();
-            Color color;
-            color = myColor.color;
-            return FractionallySizedBox(
-              alignment: Alignment.center,
-              widthFactor: 0.5,
-              child: MyButton(myValue: g.listCells[lig][col], myColor: color),
-            );
-          }),
+                  ],
+                );
+              }),
+            ),
+          ],
+        )
     );
+  }
+}
+
+class BackgroundLinePainter extends CustomPainter {
+  final double verticalPosition;
+  final double lineWidthPercentage;
+  final List<MyLigne> l;
+  double largeurWidthEcran;
+  double hauteurHeightEcran;
+  int tailleTab;
+
+  BackgroundLinePainter(this.verticalPosition, this.lineWidthPercentage, this.l, this.largeurWidthEcran, this.hauteurHeightEcran, this.tailleTab,  Listenable repaint): super(repaint: repaint);
+
+
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    print("toot");
+
+    final paint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 15;
+
+    for(int i = 0; i < l.length; ++i){
+
+
+      double startX = 17 + l[i].cellStart.y *  largeurWidthEcran/tailleTab;
+      double startY =   l[i].cellStart.x * largeurWidthEcran/tailleTab;
+      double endX = 17 + l[i].cellEnd.y * largeurWidthEcran/tailleTab;
+      double endY =   l[i].cellEnd.x * largeurWidthEcran/tailleTab  ;
+      /*
+      print("Début X: " + l[i].cellStart.x.toString());
+      print("Début Y: " + l[i].cellStart.y.toString());
+      print("End X: " + l[i].cellEnd.x.toString());
+      print("End Y: " + l[i].cellEnd.y.toString());
+
+      print("startx: $startX - starty $startY");
+      print("endX: $endX - endy $endY");*/
+
+      canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);
+    }
+    /*
+    final startY = 175 * verticalPosition;
+    final endY = 175 * verticalPosition;
+
+    final startX = 600 * (1 - lineWidthPercentage) / 2;
+    final endX = size.width - startX;
+
+    canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);*/
+  }
+
+  @override
+  bool shouldRepaint(BackgroundLinePainter oldDelegate) {
+    return oldDelegate.l.length != l.length;
   }
 }

@@ -2,8 +2,14 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:masyu_puzzle/chrono.dart';
 import 'package:audioplayers/audioplayers.dart';
+=======
+import 'package:masyu_puzzle/MyAppData.dart';
+import 'package:masyu_puzzle/MyGrille.dart';
+import 'package:masyu_puzzle/game.dart';
+>>>>>>> ce4a912b587fa8f98c1c4ee2b920a19cf1451a75
 
 class MyScreenGame extends StatefulWidget {
   const MyScreenGame({super.key});
@@ -91,17 +97,11 @@ class _MyScreenGame extends State<MyScreenGame> {
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.02),
                     SizedBox(
-                      height: hauteurHeightEcran * 0.45,
-                      width: largeurWidthEcran * 0.95,
-                      child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: Color(0xFF002B5B)),
-                        child: const Text('Ma grille',
-                            style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
-                      ),
+                      height: hauteurHeightEcran * 0.58,
+                      width: largeurWidthEcran * 0.90,
+                        child: MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
                     ),
-                    SizedBox(height: hauteurHeightEcran * 0.09),
+                    SizedBox(height: hauteurHeightEcran * 0.05),
                     Column(
                       children: [
                         SizedBox(
@@ -209,7 +209,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                             style: TextStyle(
                                 fontFamily: 'Langar',
                                 fontSize: 28,
-                                color: Colors.white)),
+                                color: Colors.black)),
                       ),
                       SizedBox(
                         width: largeurWidthEcran * 0.4,
@@ -217,7 +217,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                       Align(
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: const Text('ACCEUIL',
+                            child: const Text('ACCUEIL',
                                 style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
                           ))
                     ],

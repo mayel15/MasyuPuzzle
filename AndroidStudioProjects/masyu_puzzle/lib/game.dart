@@ -1,3 +1,6 @@
+import 'package:masyu_puzzle/MyAppData.dart';
+import 'package:masyu_puzzle/main.dart';
+
 import 'cell.dart';
 import 'enum.dart';
 import 'line.dart';
@@ -140,17 +143,20 @@ class Game {
   }
 
   List<Cell> liste_choice_button = [];
-  void clickButton(Cell cell){
+  bool clickButton(Cell cell, MyAppData myData){
     if(liste_choice_button.length == 0){
       liste_choice_button.add(cell);
       print("premier click");
     }else{
       print("deuxieme click");
-      play(liste_choice_button[0], cell);
-      liste_choice_button.removeAt(0);
-      this.lines.forEach((element)=>{ print(element)});
 
+      play(liste_choice_button[0], cell);
+      myData.addLigne(MyLigne( liste_choice_button[0], cell));
+      liste_choice_button.removeAt(0);
+      //this.lines.forEach((element)=>{ print(element)});
+      return true;
     }
+    return false;
   }
 
   void play(Cell cell1, Cell cell2) {

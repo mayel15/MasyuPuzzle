@@ -21,7 +21,7 @@ class Grid{
     }
     for(int i=0; i<nb; i++){
       for(int j=0; j<nb; j++){
-        listCells.elementAt(i).add(Cell(i,j, CellType.none));
+        listCells.elementAt(i).add(Cell(j,i, CellType.none));
       }
       
     }

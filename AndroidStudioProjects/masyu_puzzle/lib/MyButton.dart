@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/MyAppData.dart';
 import 'package:masyu_puzzle/MyGrille.dart';
 import 'package:masyu_puzzle/cell.dart';
 import 'package:masyu_puzzle/game.dart';
@@ -18,9 +19,9 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(
         child: Text('$display_cell'),
         onPressed: () {
-          print('My value $display_cell');
-          Game game = MyGameContext.of(context).gameData.data;
-          game.clickButton(game.grid.listCells[x][y]);
+          //print('My value $display_cell');
+          MyAppData data = MyGameContext.of(context).gameData;
+          data.data.clickButton(data.data.grid.listCells[x][y], data);
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: myColor,
