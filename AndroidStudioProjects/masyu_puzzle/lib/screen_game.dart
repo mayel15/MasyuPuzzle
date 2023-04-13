@@ -18,6 +18,7 @@ class MyScreenGame extends StatefulWidget {
 class _MyScreenGame extends State<MyScreenGame> {
   late AudioPlayer _audioPlayer;
   late AudioCache _audioCache;
+  bool isWin = false;
 
   @override
   void initState() {
@@ -47,7 +48,7 @@ class _MyScreenGame extends State<MyScreenGame> {
     double largeurWidthEcran = MediaQuery.of(context).size.width;
     double hauteurHeightEcran = MediaQuery.of(context).size.height;
     double opaciteWin = 1;
-    bool isWin = false;
+
 
     return Scaffold(
         backgroundColor: Color(0xffEA5455),
@@ -108,12 +109,14 @@ class _MyScreenGame extends State<MyScreenGame> {
                             borderRadius: BorderRadius.circular(15.0),
                             child: ElevatedButton(
                               onPressed: () {
-                                _stopAudio();
-                                opaciteWin = 0;
-                                isWin = true;
-                                print("C'est gagné! ");
-                                print("Opacité:  " + opaciteWin.toString());
-                                print("isWin: " + isWin.toString());
+                                setState(() {
+                                  _stopAudio();
+                                  opaciteWin = 0;
+                                  isWin = true;
+                                  print("C'est gagné! ");
+                                  print("Opacité:  " + opaciteWin.toString());
+                                  print("isWin: " + isWin.toString());
+                                });
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: StadiumBorder(),

@@ -174,7 +174,12 @@ class _MyScreenGameBlur extends State<MyScreenGameBlur> {
                   ),
                   Align(
                       child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/',
+                      );
+                    },
                     child: const Text('ACCEUIL',
                         style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
                   ))
