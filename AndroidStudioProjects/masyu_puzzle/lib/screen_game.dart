@@ -114,12 +114,18 @@ class _MyScreenGame extends State<MyScreenGame> {
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  _stopAudio();
-                                  opaciteWin = 0;
-                                  isWin = true;
-                                  print("C'est gagné! ");
-                                  print("Opacité:  " + opaciteWin.toString());
-                                  print("isWin: " + isWin.toString());
+                                  print(data.data.checkWin());
+                                  data.data.lines.forEach((element) => {if(element.linked)print(element)});
+
+                                  if(data.data.checkWin()){
+                                    _stopAudio();
+                                    opaciteWin = 0;
+                                    isWin = true;
+                                    print("C'est gagné! ");
+                                    print("Opacité:  " + opaciteWin.toString());
+                                    print("isWin: " + isWin.toString());
+                                  }
+
                                 });
                               },
                               style: ElevatedButton.styleFrom(

@@ -204,7 +204,7 @@ class Game {
           }
         }
       }
-
+  /*
       myData.lignes.forEach(
           (element) => {print('Test 1 ' + element.cellStart.x.toString())});
       myData.lignes.forEach(
@@ -213,7 +213,7 @@ class Game {
           (element) => {print('Test 3 ' + element.cellEnd.x.toString())});
       myData.lignes.forEach(
           (element) => {print('Test 4 ' + element.cellEnd.y.toString())});
-      liste_choice_button.removeAt(0);
+      */liste_choice_button.removeAt(0);
       liste_pos.removeRange(0, 4);
       return true;
     }
@@ -223,6 +223,7 @@ class Game {
 // ...
 
   bool play(Cell cell1, Cell cell2) {
+    bool res = false;
     // Vérifier si les cellules sont voisines et non diagonales
     //Vérifier si les deux cellules sont voisines
     bool isAdjacent = (cell1.x == cell2.x && (cell1.y - cell2.y).abs() == 1) ||
@@ -236,20 +237,44 @@ class Game {
             line.linked = true;
             cell1.nbVoisins++;
             cell2.nbVoisins++;
-            return true;
+            res = true;
           } else {
             line.linked = false;
             cell1.nbVoisins--;
             cell2.nbVoisins--;
-            return true;
+            res = true;
           }
           // break; // will see what to do about that
         }
       }
     }
-    return false;
+    this.lines.forEach((element) => {if(element.linked)print(element)});
+
+    return res;
   }
 
+  /*
+  bool play(Cell cell1, Cell cell2) {
+    // after see for the change of the linked like a toggle
+    for (Line line in lines) {
+      if ((line.c1 == cell1 && line.c2 == cell2) ||
+          (line.c1 == cell2 && line.c2 == cell1)) {
+        if (line.linked == false) {
+          line.linked = true;
+          cell1.nbVoisins++;
+          cell2.nbVoisins++;
+          return true;
+        } else {
+          line.linked = false;
+          cell1.nbVoisins--;
+          cell2.nbVoisins--;
+          return true;
+        }
+        // break; // will see what to do about that
+      }
+    }
+    return false;
+  }*/
   bool checkCellBlackCondFic(Cell c) {
     for (Line line in lines) {
       if ((line.c1 == c &&

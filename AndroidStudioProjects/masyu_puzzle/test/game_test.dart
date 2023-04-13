@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:masyu_puzzle/enum.dart';
 import 'package:masyu_puzzle/cell.dart';
 import 'package:masyu_puzzle/game.dart';
+import 'package:masyu_puzzle/line.dart';
 
 void main() {
   /* unit tests for game */
@@ -53,9 +54,9 @@ void main() {
       game.grid.listCells = [
         [
           Cell(0, 0, CellType.black),
-          Cell(0, 1, CellType.white),
-          Cell(0, 2, CellType.none),
-          Cell(0, 3, CellType.black)
+          Cell(0, 1, CellType.none),
+          Cell(0, 2, CellType.black),
+          Cell(0, 3, CellType.none)
         ],
         [
           Cell(1, 0, CellType.none),
@@ -66,14 +67,14 @@ void main() {
         [
           Cell(2, 0, CellType.none),
           Cell(2, 1, CellType.none),
-          Cell(2, 2, CellType.none),
+          Cell(2, 2, CellType.white),
           Cell(2, 3, CellType.none)
         ],
         [
           Cell(3, 0, CellType.none),
           Cell(3, 1, CellType.none),
-          Cell(3, 2, CellType.white),
-          Cell(3, 3, CellType.black)
+          Cell(3, 2, CellType.none),
+          Cell(3, 3, CellType.none)
         ]
       ];
 
@@ -86,18 +87,12 @@ void main() {
           game.grid.listCells.elementAt(0).elementAt(2));
 
       game.play(game.grid.listCells.elementAt(0).elementAt(2),
-          game.grid.listCells.elementAt(0).elementAt(3));
+          game.grid.listCells.elementAt(1).elementAt(2));
 
-      game.play(game.grid.listCells.elementAt(0).elementAt(3),
-          game.grid.listCells.elementAt(1).elementAt(3));
+      game.play(game.grid.listCells.elementAt(1).elementAt(2),
+          game.grid.listCells.elementAt(2).elementAt(2));
 
-      game.play(game.grid.listCells.elementAt(1).elementAt(3),
-          game.grid.listCells.elementAt(2).elementAt(3));
-
-      game.play(game.grid.listCells.elementAt(2).elementAt(3),
-          game.grid.listCells.elementAt(3).elementAt(3));
-
-      game.play(game.grid.listCells.elementAt(3).elementAt(3),
+      game.play(game.grid.listCells.elementAt(2).elementAt(2),
           game.grid.listCells.elementAt(3).elementAt(2));
 
       game.play(game.grid.listCells.elementAt(3).elementAt(2),
@@ -115,6 +110,18 @@ void main() {
       game.play(game.grid.listCells.elementAt(1).elementAt(0),
           game.grid.listCells.elementAt(0).elementAt(0));
 
+      game.lines.forEach((element) => {if(element.linked)print(element)});
+
+/*
+      game.play(game.grid.listCells.elementAt(3).elementAt(0),
+          game.grid.listCells.elementAt(2).elementAt(0));
+
+      game.play(game.grid.listCells.elementAt(2).elementAt(0),
+          game.grid.listCells.elementAt(1).elementAt(0));
+
+      game.play(game.grid.listCells.elementAt(1).elementAt(0),
+          game.grid.listCells.elementAt(0).elementAt(0));
+*/
       expect(game.checkWin(), equals(true));
     });
 
