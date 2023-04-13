@@ -49,8 +49,8 @@ class _MyGrille extends State<MyGrille> {
         .of(context)
         .size
         .height;
-    int taille = 5;
-    /*double mult;
+    int taille = 7;
+    double mult;
     if(taille == 4){
       mult = 0.040;
     }
@@ -59,7 +59,7 @@ class _MyGrille extends State<MyGrille> {
     }
     else{
       mult = 0.001;
-    }*/
+    }
     MyAppData data = MyGameContext
         .of(context)
         .gameData;
@@ -90,7 +90,7 @@ class _MyGrille extends State<MyGrille> {
             GridView.count(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: hauteurHeightEcran*0.025),
+              padding: EdgeInsets.only(top: hauteurHeightEcran*mult),
               mainAxisSpacing: hauteurHeightEcran*0.0125,
               crossAxisCount: taille,
               children: List.generate(taille * taille, (index) {
