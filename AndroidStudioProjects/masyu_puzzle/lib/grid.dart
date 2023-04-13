@@ -15,7 +15,7 @@ class Grid{
       return listCells;
   }
 
-  void gridGenerator(int nb){
+  /*void gridGenerator(int nb){
     for(int i=0; i<nb; i++){
       listCells.add([]);
     }
@@ -44,11 +44,44 @@ class Grid{
         }
       }
     }
+  }*/
+
+  void gridGenerator(int nb){
+    for(int i=0; i<nb; i++){
+      listCells.add([]);
+    }
+    for(int i=0; i<nb; i++){
+      for(int j=0; j<nb; j++){
+        listCells.elementAt(i).add(Cell(i, j, CellType.none));
+      }
+      
+    }
+
+    int nbPoints = ((nb*nb)*20)~/100; // the number of cells to change the color in black or white 
+    int row, col, ch;
+    var rand = new Random();
+
+    for(int i=0; i<(nbPoints*0.5).toInt(); i++){
+      do{
+        row = rand.nextInt(nb-2)+1;
+        col = rand.nextInt(nb-2)+1;
+      }while(listCells.elementAt(row).elementAt(col).color != CellType.none);
+      
+      listCells.elementAt(row).elementAt(col).color = CellType.white;
+      /*listCells.elementAt(row).elementAt(col+((nb-col)/2).toInt()).color = CellType.white;*/ 
+    }
+    for(int i=0; i<nbPoints-(nbPoints*0.5).toInt(); i++){
+      do{
+        row = rand.nextInt(nb);
+        col = rand.nextInt(nb);
+      }while(listCells.elementAt(row).elementAt(col).color != CellType.none);
+      
+      listCells.elementAt(row).elementAt(col).color = CellType.black;
+    }
+  }
 
   void setListeCellule(List<List<Cell>> newListCell){
      listCells = newListCell;
-  }
-
   }
 }
 
@@ -61,10 +94,13 @@ void main(){
   //List<List<Cell>> l = [[c1], [c2]];
   Grid g = Grid();
   //var rand = new Random();
-  g.gridGenerator(4);
+  g.gridGenerator(6);
   //print(g.listCells);
   //print(g.listCells.elementAt(0).elementAt(0).getColor());
   //g.listCells.elementAt(0).elementAt(0).setColor(CellType.black);
-  print(g.listCells);
+  for (List<Cell> list in g.listCells){
+    print(list);
+  } 
+  
   // print(rand.nextInt(5));
 }

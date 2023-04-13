@@ -13,8 +13,20 @@ class Game {
 
   Game();
 
+  List<Line> getLines() {
+    return lines;
+  }
+
+  void setLines(List<Line> newLines) {
+    this.lines = newLines;
+  }
+
+  void setGrid(Grid newGrid) {
+    this.grid = newGrid;
+
   Grid getGrid() {
     return grid;
+
   }
 
   void linkedCells() {
@@ -121,6 +133,7 @@ class Game {
       }
     }
   }
+
 
   /*void checkNbvoisins(){
     for(int i=0; i<grid.listCells.length;i++){
@@ -234,31 +247,82 @@ class Game {
     return false;
   }
 
+  bool checkCellBlackCondFic(Cell c) {
+    for (Line line in lines) {
+      if ((line.c1 == c &&
+              line.c2.x == c.x - 1 &&
+              line.c2.y == c.y &&
+              line.linked == true) ||
+          (line.c1 == c &&
+              line.c2.x == c.x + 1 &&
+              line.c2.y == c.y &&
+              line.linked == true)) {
+        for (Line l in lines) {
+          if ((l.c1 == c &&
+                  l.c2.x == c.x &&
+                  l.c2.y == c.y - 1 &&
+                  l.linked == true) ||
+              (l.c1 == c &&
+                  l.c2.x == c.x &&
+                  l.c2.y == c.y + 1 &&
+                  l.linked == true)) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  bool checkCellWhiteCondFic(Cell c) {
+    for (Line line in lines) {
+      if ((line.c1 == c &&
+              line.c2.x == c.x - 1 &&
+              line.c2.y == c.y &&
+              line.linked == true) ||
+          (line.c1 == c &&
+              line.c2.x == c.x &&
+              line.c2.y == c.y - 1 &&
+              line.linked == true)) {
+        for (Line l in lines) {
+          if ((l.c1 == c &&
+                  l.c2.x == c.x + 1 &&
+                  l.c2.y == c.y &&
+                  l.linked == true) ||
+              (l.c1 == c &&
+                  l.c2.x == c.x &&
+                  l.c2.y == c.y + 1 &&
+                  l.linked == true)) return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   bool checkCellBlackCond(Cell c) {
-    // check the presence 90deg angle
-    for (int i = 0; i < grid.listCells.length; i++) {
-      for (Cell c in grid.listCells[i]) {
-        for (Line line in lines) {
-          if ((line.c1 == c &&
+    for (Line line in lines) {
+      if (((line.c1 == c &&
                   line.c2.x == c.x - 1 &&
                   line.c2.y == c.y &&
                   line.linked == true) ||
               (line.c1 == c &&
                   line.c2.x == c.x + 1 &&
                   line.c2.y == c.y &&
-                  line.linked == true)) {
-            for (Line l in lines) {
-              if ((l.c1 == c &&
+                  line.linked == true)) &&
+          (checkCellWhiteCondFic(line.c2))) {
+        print("f");
+        for (Line l in lines) {
+          if (((l.c1 == c &&
                       l.c2.x == c.x &&
                       l.c2.y == c.y - 1 &&
                       l.linked == true) ||
                   (l.c1 == c &&
                       l.c2.x == c.x &&
                       l.c2.y == c.y + 1 &&
-                      l.linked == true)) {
-                return true;
-              }
-            }
+                      l.linked == true)) &&
+              (checkCellWhiteCondFic(l.c2))) {
+            return true;
           }
         }
       }
@@ -267,75 +331,47 @@ class Game {
   }
 
   bool checkCellWhiteCond(Cell c) {
-    // line between preceded cell and follow cell while passing the white cell
-    for (int i = 0; i < grid.listCells.length; i++) {
-      for (Cell c in grid.listCells[i]) {
-        for (Line line in lines) {
-          if (line.c1 == c &&
+    for (Line line in lines) {
+      if ((line.c1 == c &&
               line.c2.x == c.x - 1 &&
               line.c2.y == c.y &&
-              line.linked == true) {
-            for (Line l in lines) {
-              if (l.c1 == c &&
-                  l.c2.x == c.x + 1 &&
-                  l.c2.y == c.y &&
-                  l.linked == true) return true;
-            }
-          }
-
-          if (line.c1 == c &&
+              line.linked == true) ||
+          (line.c1 == c &&
               line.c2.x == c.x &&
               line.c2.y == c.y - 1 &&
-              line.linked == true) {
-            for (Line l in lines) {
-              if (l.c1 == c &&
-                  l.c2.x == c.x &&
-                  l.c2.y == c.y + 1 &&
-                  l.linked == true) return true;
-            }
-          }
+              line.linked ==
+                  true)) 
+      {
+        print("deed");
+        for (Line l in lines) {
+          if (((l.c1 == c &&
+                      l.c2.x == c.x + 1 &&
+                      l.c2.y == c.y &&
+                      l.linked == true) ||
+                  (l.c1 == c &&
+                      l.c2.x == c.x &&
+                      l.c2.y == c.y + 1 &&
+                      l.linked == true)) &&
+              ((checkCellBlackCondFic(l.c2)) ||
+                  (checkCellBlackCondFic(line.c2)))) return true;
         }
       }
     }
+
     return false;
   }
-
-  /*bool checkWin() {
-    // verify when a game is won
-    for (int i = 0; i < grid.listCells.length; i++) {
-      for (Cell c in grid.listCells[i]) {
-        if (c.color == CellType.black) {
-          if (!checkCellBlackCond(c) && c.nbVoisins != 2) return false;
-        }
-        if (c.color == CellType.black) {
-          if (!checkCellBlackCond(c) && c.nbVoisins != 2) return false;
-        }
-        if (c.color == CellType.none) {
-          if (c.nbVoisins != 2) return false;
-        }
-      }
-    }
-    return true;
-  }*/
 
   bool checkWin() {
     // verify when a game is won
     for (Line l in lines) {
-      if (!(l.linked == true &&
-          l.c1.nbVoisins ~/ 2 == 2 &&
-          l.c2.nbVoisins ~/ 2 == 2)) {
+      if (l.linked == true &&
+          !(l.c1.nbVoisins ~/ 2 == 2 && l.c2.nbVoisins ~/ 2 == 2)) {
         return false;
       } else {
-        if ((l.c1.color == CellType.black) && (!checkCellBlackCond(l.c1))) {
-          return false;
-        }
-        if ((l.c2.color == CellType.black) && (!checkCellBlackCond(l.c2))) {
-          return false;
-        }
-        if ((l.c1.color == CellType.white) && (!checkCellWhiteCond(l.c1))) {
-          return false;
-        }
-        if ((l.c2.color == CellType.white) && (!checkCellWhiteCond(l.c2))) {
+        if (((l.c1.color == CellType.black) && (!checkCellBlackCond(l.c1))) ||
+            ((l.c2.color == CellType.black) && (!checkCellBlackCond(l.c2))) ||
+            ((l.c1.color == CellType.white) && (!checkCellWhiteCond(l.c1))) ||
+            ((l.c2.color == CellType.white) && (!checkCellWhiteCond(l.c2)))) {
           return false;
         }
       }
@@ -346,34 +382,16 @@ class Game {
 
 void main() {
   Game game = Game();
-  game.grid.gridGenerator(3);
-  game.linkedCells();
-
-  // test nb voisins ok
-  game.play(game.grid.listCells.elementAt(0).elementAt(0),
-      game.grid.listCells.elementAt(0).elementAt(1));
-  game.play(game.grid.listCells.elementAt(0).elementAt(0),
-      game.grid.listCells.elementAt(1).elementAt(0));
-  game.play(game.grid.listCells.elementAt(1).elementAt(1),
-      game.grid.listCells.elementAt(0).elementAt(1));
-  game.play(game.grid.listCells.elementAt(1).elementAt(1),
-      game.grid.listCells.elementAt(1).elementAt(0));
-
-  print(game.grid.listCells);
-  game.lines.forEach((element) => {if (element.linked == true) print(element)});
-  print(game.checkWin());
-  //game.play(game.grid.listCells.elementAt(0).elementAt(0), game.grid.listCells.elementAt(0).elementAt(1));
-  int n = game.grid.listCells.elementAt(0).elementAt(0).getNbVoisins();
-  print("voisins: $n");
-
-  //game.checkNbvoisins(game.grid.listCells.elementAt(0).elementAt(0));
-  //int m = game.grid.listCells.elementAt(0).elementAt(0).getNbVoisins();
-  //print('voisins: $m');
-  //print(game.grid.listCells);
-  //print(game.lines);
-  //game.play(game.grid.listCells.elementAt(0).elementAt(0), game.grid.listCells.elementAt(0).elementAt(1));
-  // print(game.lines);
-  //print(game.checkWin());
-
-  // print();
+  /*game.grid.listCells = [
+    [
+      Cell(0, 0, CellType.black),Cell(0, 1, CellType.black),Cell(0, 2, CellType.none)
+    ],
+    [
+      Cell(1, 0, CellType.none),Cell(1, 1, CellType.white),Cell(1, 2, CellType.none)
+    ],
+    [
+      Cell(2, 0, CellType.black),Cell(2, 1, CellType.black), Cell(2, 2, CellType.none)
+    ]
+  ];*/
+  
 }
