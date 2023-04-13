@@ -8,8 +8,13 @@ class MyAppData {
   final counter = ValueNotifier<int>(0);
   List<MyLigne> lignes = [];
   List<Position> position = [];
+  int taille = 0;
 
   MyAppData(this.data);
+
+  void setTaille(int taille){
+    this.taille = taille;
+  }
 
   void addLigne(MyLigne l){
     lignes.add(l);

@@ -48,7 +48,11 @@ class _MyScreenGame extends State<MyScreenGame> {
     double largeurWidthEcran = MediaQuery.of(context).size.width;
     double hauteurHeightEcran = MediaQuery.of(context).size.height;
     double opaciteWin = 1;
-
+    final data = ModalRoute
+        .of(context)!
+        .settings
+        .arguments as MyAppData;
+      print("taille " + data.taille.toString());
 
     return Scaffold(
         backgroundColor: Color(0xffEA5455),
@@ -97,7 +101,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                     SizedBox(
                       height: hauteurHeightEcran * 0.50,
                       width: largeurWidthEcran * 0.90,
-                      child: MyGameContext(gameData: MyAppData(Game()), child: MyGrille()),
+                      child: MyGameContext(gameData: data, child: MyGrille()),
                     ),
                     SizedBox(height: hauteurHeightEcran * 0.05),
                     Column(

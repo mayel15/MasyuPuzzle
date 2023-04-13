@@ -49,7 +49,11 @@ class _MyGrille extends State<MyGrille> {
         .of(context)
         .size
         .height;
-    int taille = 7;
+    MyAppData data = MyGameContext
+        .of(context)
+        .gameData;
+
+    int taille = data.taille;
     double mult;
     if(taille == 4){
       mult = 0.040;
@@ -60,10 +64,7 @@ class _MyGrille extends State<MyGrille> {
     else{
       mult = 0.001;
     }
-    MyAppData data = MyGameContext
-        .of(context)
-        .gameData;
-    data.data.grid.gridGenerator(taille);
+
     Grid g = data.data.grid;
     data.data.linkedCells();
     return Scaffold(

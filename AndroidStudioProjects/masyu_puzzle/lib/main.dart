@@ -59,10 +59,16 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {Navigator.pushNamed(
+                    onPressed: () {
+                      int taille = 4;
+                      MyAppData data = MyAppData(Game());
+                      data.setTaille(taille);
+                      data.data.grid.gridGenerator(taille);
+                      Navigator.pushNamed(
                       context,
                       '/screengame',
-                    );},
+                        arguments:data,
+                      );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
@@ -75,9 +81,15 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {Navigator.pushNamed(
-                      context,
-                      '/screengame',
+                    onPressed: () {
+                      int taille = 5;
+                      MyAppData data = MyAppData(Game());
+                      data.setTaille(taille);
+                      data.data.grid.gridGenerator(taille);
+                      Navigator.pushNamed(
+                        context,
+                        '/screengame',
+                        arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Intermediaire',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
@@ -91,9 +103,15 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {Navigator.pushNamed(
-                      context,
-                      '/screengame',
+                    onPressed: () {
+                      int taille = 6;
+                      MyAppData data = MyAppData(Game());
+                      data.setTaille(taille);
+                      data.data.grid.gridGenerator(taille);
+                      Navigator.pushNamed(
+                        context,
+                        '/screengame',
+                        arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
@@ -107,9 +125,15 @@ class Accueil extends StatelessWidget {
                 child :ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: ElevatedButton(
-                    onPressed: () {Navigator.pushNamed(
-                      context,
-                      '/screengame',
+                    onPressed: () {
+                      int taille = 7;
+                      MyAppData data = MyAppData(Game());
+                      data.setTaille(taille);
+                      data.data.grid.gridGenerator(taille);
+                      Navigator.pushNamed(
+                        context,
+                        '/screengame',
+                        arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                     child: const Text('Démoniaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
