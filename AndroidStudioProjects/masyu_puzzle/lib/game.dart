@@ -195,8 +195,10 @@ class Game {
             }
           }
           for(int i =0; i< myData.position.length; i++){
-            if(myData.position[i].button_x_b1 == liste_pos[0] && myData.position[i].button_y_b1 == liste_pos[1] &&
-            myData.position[i].button_x_b2 == liste_pos[2] && myData.position[i].button_y_b2 == liste_pos[3]){
+            if((myData.position[i].button_x_b1 == liste_pos[0] && myData.position[i].button_y_b1 == liste_pos[1] &&
+            myData.position[i].button_x_b2 == liste_pos[2] && myData.position[i].button_y_b2 == liste_pos[3]) ||
+                (myData.position[i].button_x_b2 == liste_pos[0] && myData.position[i].button_y_b2 == liste_pos[1] &&
+                    myData.position[i].button_x_b1 == liste_pos[2] && myData.position[i].button_y_b1 == liste_pos[3])){
               myData.position.remove(myData.position[i]);
             }
           }
