@@ -64,13 +64,14 @@ class Accueil extends StatelessWidget {
                       MyAppData data = MyAppData(Game());
                       data.setTaille(taille);
                       data.data.grid.gridGenerator(taille);
+                      data.setDifficulte('Facile');
                       Navigator.pushNamed(
                       context,
                       '/screengame',
                         arguments:data,
                       );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                    child: const Text('Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                    child: const Text('😇 Facile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
                 ),
               ),
@@ -86,13 +87,14 @@ class Accueil extends StatelessWidget {
                       MyAppData data = MyAppData(Game());
                       data.setTaille(taille);
                       data.data.grid.gridGenerator(taille);
+                      data.setDifficulte('Intermediaire');
                       Navigator.pushNamed(
                         context,
                         '/screengame',
                         arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                    child: const Text('Intermediaire',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                    child: const Text('👌 Intermediaire',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
                 ),
               ),
@@ -108,13 +110,14 @@ class Accueil extends StatelessWidget {
                       MyAppData data = MyAppData(Game());
                       data.setTaille(taille);
                       data.data.grid.gridGenerator(taille);
+                      data.setDifficulte('Difficile');
                       Navigator.pushNamed(
                         context,
                         '/screengame',
                         arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                    child: const Text('Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                    child: const Text('🥵 Difficile',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
                 ),
               ),
@@ -130,13 +133,14 @@ class Accueil extends StatelessWidget {
                       MyAppData data = MyAppData(Game());
                       data.setTaille(taille);
                       data.data.grid.gridGenerator(taille);
+                      data.setDifficulte('Démoniaque');
                       Navigator.pushNamed(
                         context,
                         '/screengame',
                         arguments:data,
                     );},
                     style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
-                    child: const Text('Démoniaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
+                    child: const Text('😈 Démoniaque',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
                   ),
                 ),
               ),

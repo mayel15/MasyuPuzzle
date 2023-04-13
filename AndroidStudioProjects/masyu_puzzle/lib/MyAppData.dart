@@ -9,6 +9,7 @@ class MyAppData {
   List<MyLigne> lignes = [];
   List<Position> position = [];
   int taille = 0;
+  String difficulte = '';
 
   MyAppData(this.data);
 
@@ -35,6 +36,10 @@ class MyAppData {
 
   String getValueAsString(){
     return data.toString();
+  }
+
+  void setDifficulte(String d){
+    difficulte = d;
   }
 }
 

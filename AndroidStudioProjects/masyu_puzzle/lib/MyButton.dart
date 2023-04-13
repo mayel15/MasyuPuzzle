@@ -37,7 +37,6 @@ class MyButton extends StatelessWidget {
     String display_cell = '$x  $y';
 
     return ElevatedButton(
-        child: Text('$display_cell'),
         onPressed: () {
           //print('My value $display_cell');
           MyAppData data = MyGameContext.of(context).gameData;
@@ -47,7 +46,7 @@ class MyButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: myColor,
             shape: CircleBorder()
-        )
+        ), child: null,
     );
   }
 }

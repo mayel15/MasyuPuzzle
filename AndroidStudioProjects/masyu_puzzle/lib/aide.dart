@@ -41,10 +41,9 @@ class Aide extends StatelessWidget {
             child :ClipRRect(
               borderRadius: BorderRadius.circular(15.0),
               child: ElevatedButton(
-                onPressed: () {Navigator.pushNamed(
-                  context,
-                  '/screengame',
-                );},
+                onPressed: () {
+                  Navigator.pop(context);
+                  },
                 style: ElevatedButton.styleFrom(foregroundColor: Colors.white,backgroundColor: Color(0xFF002B5B)),
                 child: const Text('OK',   style: TextStyle(fontFamily: 'Langar',fontSize: 28)),
               ),

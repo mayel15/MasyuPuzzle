@@ -52,6 +52,7 @@ class _MyScreenGame extends State<MyScreenGame> {
         .of(context)!
         .settings
         .arguments as MyAppData;
+    String difficulte = data.difficulte;
       print("taille " + data.taille.toString());
 
     return Scaffold(
@@ -90,7 +91,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                               ),
                             ),
                           ),
-                          const Text("Facile",
+                          Text('$difficulte',
                               style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
                         ]),
                     Container(
@@ -222,7 +223,7 @@ class _MyScreenGame extends State<MyScreenGame> {
                                 color: Colors.black)),
                       ),
                       SizedBox(
-                        width: largeurWidthEcran * 0.4,
+                        width: largeurWidthEcran * 0.2,
                       ),
                       Align(
                           child: ElevatedButton(
