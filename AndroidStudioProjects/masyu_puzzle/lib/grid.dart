@@ -7,7 +7,7 @@ class Grid{
   // matrix for represent a grid 
   List<List<Cell>> listCells = [];
   //List<Line> line = [];
-  
+
 
   Grid();
 
@@ -20,8 +20,8 @@ class Grid{
       listCells.add([]);
     }
     for(int i=0; i<nb; i++){
-      for(int i=0; i<nb; i++){
-        listCells.elementAt(i).add(Cell(-1,-1, CellType.none));
+      for(int j=0; j<nb; j++){
+        listCells.elementAt(i).add(Cell(j,i, CellType.none));
       }
       
     }
@@ -34,8 +34,8 @@ class Grid{
       row = rand.nextInt(nb);
       col = rand.nextInt(nb);
       if(listCells.elementAt(row).elementAt(col).color == CellType.none){
-        listCells.elementAt(row).elementAt(col).setX(row);
-        listCells.elementAt(row).elementAt(col).setY(col);
+        //listCells.elementAt(row).elementAt(col).setX(row);
+        //listCells.elementAt(row).elementAt(col).setY(col);
         if(ch %2 == 0){
           listCells.elementAt(row).elementAt(col).color = CellType.black;
         }
@@ -84,6 +84,8 @@ class Grid{
      listCells = newListCell;
   }
 }
+
+
 
 
 void main(){
