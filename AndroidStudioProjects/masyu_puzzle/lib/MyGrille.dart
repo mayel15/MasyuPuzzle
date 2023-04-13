@@ -49,8 +49,17 @@ class _MyGrille extends State<MyGrille> {
         .of(context)
         .size
         .height;
-    int taille = 6;
-
+    int taille = 5;
+    /*double mult;
+    if(taille == 4){
+      mult = 0.040;
+    }
+    else if (5 <= taille && taille < 7){
+      mult = 0.020;
+    }
+    else{
+      mult = 0.001;
+    }*/
     MyAppData data = MyGameContext
         .of(context)
         .gameData;
@@ -69,6 +78,7 @@ class _MyGrille extends State<MyGrille> {
               painter: BackgroundLinePainter(
                   0.3,
                   0.5,
+                  data.position,
                   data.lignes,
                   largeurWidthEcran,
                   hauteurHeightEcran,
@@ -80,7 +90,7 @@ class _MyGrille extends State<MyGrille> {
             GridView.count(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: hauteurHeightEcran*0.01),
+              padding: EdgeInsets.only(top: hauteurHeightEcran*0.025),
               mainAxisSpacing: hauteurHeightEcran*0.0125,
               crossAxisCount: taille,
               children: List.generate(taille * taille, (index) {
@@ -106,12 +116,13 @@ class _MyGrille extends State<MyGrille> {
 class BackgroundLinePainter extends CustomPainter {
   final double verticalPosition;
   final double lineWidthPercentage;
-  final List<MyLigne> l;
+  final List<Position> l;
+  final List<MyLigne> l2;
   double largeurWidthEcran;
   double hauteurHeightEcran;
   int tailleTab;
 
-  BackgroundLinePainter(this.verticalPosition, this.lineWidthPercentage, this.l, this.largeurWidthEcran, this.hauteurHeightEcran, this.tailleTab,  Listenable repaint): super(repaint: repaint);
+  BackgroundLinePainter(this.verticalPosition, this.lineWidthPercentage, this.l, this.l2, this.largeurWidthEcran, this.hauteurHeightEcran, this.tailleTab,  Listenable repaint): super(repaint: repaint);
 
 
 
@@ -120,31 +131,18 @@ class BackgroundLinePainter extends CustomPainter {
 
     final paint = Paint()
       ..color = Colors.black
-      ..strokeWidth = 5;
+      ..strokeWidth = 15;
 
     for(int i = 0; i < l.length; ++i){
-
-      //Vérifier si les deux cellules sont voisines
-      bool isAdjacent = (l[i].cellStart.x == l[i].cellEnd.x && (l[i].cellStart.y - l[i].cellEnd.y).abs() == 1) ||
-      (l[i].cellStart.y == l[i].cellEnd.y && (l[i].cellStart.x - l[i].cellEnd.x).abs() == 1);
-
-      // Vérifier si la ligne est verticale ou horizontale
-      if ((l[i].cellStart.x == l[i].cellEnd.x || l[i].cellStart.y == l[i].cellEnd.y) && isAdjacent) {
-
-        if(l[i].cellStart.x == l[i].cellEnd.x){
-          double startX = 17 + l[i].cellStart.y *  largeurWidthEcran/tailleTab;
-          double startY =  35+ l[i].cellStart.x * largeurWidthEcran/tailleTab;
-          double endX = 17 + l[i].cellEnd.y * largeurWidthEcran/tailleTab;
-          double endY =  35 + l[i].cellEnd.x * largeurWidthEcran/tailleTab  ;
-          canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);
-        }
-        else{
-          double startX = 13 + l[i].cellStart.y *  largeurWidthEcran/tailleTab;
-          double startY =  35+ l[i].cellStart.x * largeurWidthEcran/tailleTab;
-          double endX = 10 + l[i].cellEnd.y * largeurWidthEcran/tailleTab;
-          double endY =  35 + l[i].cellEnd.x * largeurWidthEcran/tailleTab  ;
-          canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);
-        }
+      //bool isAdjacent = (l2[i].cellStart.x == l2[i].cellEnd.x && (l2[i].cellStart.y - l2[i].cellEnd.y).abs() == 1) ||
+          //(l2[i].cellStart.y == l2[i].cellEnd.y && (l2[i].cellStart.x - l2[i].cellEnd.x).abs() == 1);
+          if((l[i].button_x_b1 == l[i].button_x_b2 || l[i].button_y_b1 == l[i].button_y_b2)){
+              double startX = l[i].button_x_b1;
+              double startY = l[i].button_y_b1;
+              double endX = l[i].button_x_b2;
+              double endY = l[i].button_y_b2;
+              canvas.drawLine(Offset(startX, startY), Offset(endX, endY), paint);
+          }
         /*
         print("Début X: " + l[i].cellStart.x.toString());
         print("Début Y: " + l[i].cellStart.y.toString());
@@ -153,7 +151,6 @@ class BackgroundLinePainter extends CustomPainter {
 
         print("startx: $startX - starty $startY");
         print("endX: $endX - endy $endY");*/
-      }
     }
   }
 

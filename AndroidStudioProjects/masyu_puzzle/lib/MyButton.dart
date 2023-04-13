@@ -13,10 +13,21 @@ class MyButton extends StatelessWidget {
   List<double> getButtonPosition(BuildContext context) {
     final RenderBox renderBox = context.findRenderObject() as RenderBox;
     final position = renderBox.localToGlobal(Offset.zero);
-    final double x = position.dy;
-    final double y = position.dx;
-    return [x, y];
+    final double x = position.dx + MediaQuery.of(context).size.width*0.022;
+    final double y = position.dy;
+    final double appBarHeight = AppBar().preferredSize.height;
+    final double statusBarHeight = MediaQuery.of(context).padding.top;
+
+    // Get the GridView's top padding and mainAxisSpacing.
+    final double gridViewTopPadding = MediaQuery.of(context).size.height * 0.01;
+    final double gridViewMainAxisSpacing = MediaQuery.of(context).size.height * 0.0125;
+
+    // Calculate the corrected Y position.
+    final double correctedY = y- MediaQuery.of(context).size.height*0.17; //- 4*(appBarHeight - statusBarHeight - gridViewTopPadding - gridViewMainAxisSpacing);
+
+    return [x, correctedY];
   }
+
 
 
   @override

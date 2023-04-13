@@ -1,9 +1,9 @@
 import 'package:masyu_puzzle/MyAppData.dart';
 import 'package:masyu_puzzle/main.dart';
-
 import 'cell.dart';
 import 'enum.dart';
 import 'line.dart';
+
 //import 'dart:math';
 import 'grid.dart';
 
@@ -13,7 +13,7 @@ class Game {
 
   Game();
 
-  Grid getGrid(){
+  Grid getGrid() {
     return grid;
   }
 
@@ -142,46 +142,96 @@ class Game {
     }
   }
 
+  bool lienExiste(Cell c1, Cell c2, MyAppData appdata) {
+    for (MyLigne data in appdata.lignes) {
+      if ((data.cellEnd == c1 && data.cellStart == c2) ||
+          data.cellStart == c1 && data.cellEnd == c2) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   List<Cell> liste_choice_button = [];
   List<double> liste_pos = [];
-  bool clickButton(Cell cell, MyAppData myData,double x, double y){
-    if(liste_choice_button.length == 0){
+
+  bool clickButton(Cell cell, MyAppData myData, double x, double y) {
+    if (liste_choice_button.length == 0) {
       liste_choice_button.add(cell);
       liste_pos.add(x);
       liste_pos.add(y);
       print("premier click");
-    }else{
+    } else {
       print("deuxieme click");
       liste_pos.add(x);
       liste_pos.add(y);
-      play(liste_choice_button[0], cell);
-      myData.addLigne(MyLigne( liste_choice_button[0], cell));
-      myData.addPos(Position(liste_pos[0],liste_pos[1],liste_pos[2],liste_pos[3]));
+      Cell c1 = liste_choice_button[0];
+      Cell c2 = cell;
+      bool isModif = play(c1, c2);
+      if (isModif) {
+        if (!lienExiste(c1, c2, myData)) {
+          myData.addLigne(MyLigne(liste_choice_button[0], cell));
+          myData.addPos(
+              Position(liste_pos[0], liste_pos[1], liste_pos[2], liste_pos[3]));
+        } else {
+          for (int i = 0; i< myData.lignes.length; i++){
+            if ((myData.lignes[i].cellEnd == c1 && myData.lignes[i].cellStart == c2) ||
+                myData.lignes[i].cellStart == c1 && myData.lignes[i].cellEnd == c2) {
+              myData.lignes.remove(myData.lignes[i]);
+            }
+          }
+          for(int i =0; i< myData.position.length; i++){
+            if(myData.position[i].button_x_b1 == liste_pos[0] && myData.position[i].button_y_b1 == liste_pos[1] &&
+            myData.position[i].button_x_b2 == liste_pos[2] && myData.position[i].button_y_b2 == liste_pos[3]){
+              myData.position.remove(myData.position[i]);
+            }
+          }
+        }
+      }
+
+      myData.lignes.forEach(
+          (element) => {print('Test 1 ' + element.cellStart.x.toString())});
+      myData.lignes.forEach(
+          (element) => {print('Test 2 ' + element.cellStart.y.toString())});
+      myData.lignes.forEach(
+          (element) => {print('Test 3 ' + element.cellEnd.x.toString())});
+      myData.lignes.forEach(
+          (element) => {print('Test 4 ' + element.cellEnd.y.toString())});
       liste_choice_button.removeAt(0);
       liste_pos.removeRange(0, 4);
-      //this.lines.forEach((element)=>{ print(element)});
       return true;
     }
     return false;
   }
 
-  void play(Cell cell1, Cell cell2) {
-    // after see for the change of the linked like a toggle
-    for (Line line in lines) {
-      if ((line.c1 == cell1 && line.c2 == cell2) ||
-          (line.c1 == cell2 && line.c2 == cell1)) {
-        if (line.linked == false) {
-          line.linked = true;
-          cell1.nbVoisins++;
-          cell2.nbVoisins++;
-        } else {
-          line.linked = false;
-          cell1.nbVoisins--;
-          cell2.nbVoisins--;
+// ...
+
+  bool play(Cell cell1, Cell cell2) {
+    // Vérifier si les cellules sont voisines et non diagonales
+    //Vérifier si les deux cellules sont voisines
+    bool isAdjacent = (cell1.x == cell2.x && (cell1.y - cell2.y).abs() == 1) ||
+        (cell1.y == cell2.y && (cell1.x - cell2.x).abs() == 1);
+
+    if ((cell1.x == cell2.x || cell1.y == cell2.y) && isAdjacent) {
+      for (Line line in lines) {
+        if ((line.c1 == cell1 && line.c2 == cell2) ||
+            (line.c1 == cell2 && line.c2 == cell1)) {
+          if (line.linked == false) {
+            line.linked = true;
+            cell1.nbVoisins++;
+            cell2.nbVoisins++;
+            return true;
+          } else {
+            line.linked = false;
+            cell1.nbVoisins--;
+            cell2.nbVoisins--;
+            return true;
+          }
+          // break; // will see what to do about that
         }
-       // break; // will see what to do about that
       }
     }
+    return false;
   }
 
   bool checkCellBlackCond(Cell c) {
@@ -270,25 +320,25 @@ class Game {
 
   bool checkWin() {
     // verify when a game is won
-    for(Line l in lines){
-      if(!(l.linked == true && l.c1.nbVoisins~/2==2 && l.c2.nbVoisins~/2==2)){
+    for (Line l in lines) {
+      if (!(l.linked == true &&
+          l.c1.nbVoisins ~/ 2 == 2 &&
+          l.c2.nbVoisins ~/ 2 == 2)) {
         return false;
+      } else {
+        if ((l.c1.color == CellType.black) && (!checkCellBlackCond(l.c1))) {
+          return false;
+        }
+        if ((l.c2.color == CellType.black) && (!checkCellBlackCond(l.c2))) {
+          return false;
+        }
+        if ((l.c1.color == CellType.white) && (!checkCellWhiteCond(l.c1))) {
+          return false;
+        }
+        if ((l.c2.color == CellType.white) && (!checkCellWhiteCond(l.c2))) {
+          return false;
+        }
       }
-      else{
-        if ((l.c1.color == CellType.black)&&(!checkCellBlackCond(l.c1))) {
-          return false;
-        }
-        if ((l.c2.color == CellType.black)&&(!checkCellBlackCond(l.c2))) {
-          return false;
-        }
-        if ((l.c1.color == CellType.white) && (!checkCellWhiteCond(l.c1))){
-          return false;
-        }
-        if ((l.c2.color == CellType.white) && (!checkCellWhiteCond(l.c2))){
-          return false;
-        }
-      }
-
     }
     return true;
   }
@@ -299,14 +349,18 @@ void main() {
   game.grid.gridGenerator(3);
   game.linkedCells();
 
-  // test nb voisins ok 
-  game.play(game.grid.listCells.elementAt(0).elementAt(0), game.grid.listCells.elementAt(0).elementAt(1));
-  game.play(game.grid.listCells.elementAt(0).elementAt(0), game.grid.listCells.elementAt(1).elementAt(0));
-  game.play(game.grid.listCells.elementAt(1).elementAt(1), game.grid.listCells.elementAt(0).elementAt(1));
-  game.play(game.grid.listCells.elementAt(1).elementAt(1), game.grid.listCells.elementAt(1).elementAt(0));
+  // test nb voisins ok
+  game.play(game.grid.listCells.elementAt(0).elementAt(0),
+      game.grid.listCells.elementAt(0).elementAt(1));
+  game.play(game.grid.listCells.elementAt(0).elementAt(0),
+      game.grid.listCells.elementAt(1).elementAt(0));
+  game.play(game.grid.listCells.elementAt(1).elementAt(1),
+      game.grid.listCells.elementAt(0).elementAt(1));
+  game.play(game.grid.listCells.elementAt(1).elementAt(1),
+      game.grid.listCells.elementAt(1).elementAt(0));
 
   print(game.grid.listCells);
-  game.lines.forEach((element)=>{if(element.linked == true) print(element)});
+  game.lines.forEach((element) => {if (element.linked == true) print(element)});
   print(game.checkWin());
   //game.play(game.grid.listCells.elementAt(0).elementAt(0), game.grid.listCells.elementAt(0).elementAt(1));
   int n = game.grid.listCells.elementAt(0).elementAt(0).getNbVoisins();
