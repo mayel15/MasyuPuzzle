@@ -23,6 +23,7 @@ class Game {
 
   void setGrid(Grid newGrid) {
     this.grid = newGrid;
+  }
 
   Grid getGrid() {
     return grid;
