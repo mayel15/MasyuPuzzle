@@ -216,7 +216,15 @@ class _MyScreenGame extends State<MyScreenGame> {
                       ),
                       Align(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              setState(() {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/',
+                                );
+                              });
+
+                            },
                             child: const Text('ACCUEIL',
                                 style: TextStyle(fontFamily: 'Langar', fontSize: 28)),
                           ))
