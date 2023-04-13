@@ -21,15 +21,6 @@ void saveGame(Game g) {
       g.grid.listCells.length,
       (i) => List.generate(
           g.grid.listCells.elementAt(i).length, (j) => g.grid.listCells.elementAt(i).elementAt(j).toJson()));
-  
-  // for lines
-  //List<Map<String, dynamic>> jsonList = List.generate(g.lines.length,(i) =>(g.lines.elementAt(i).toJson()));
-
-  //jsonGrid.add(jsonList);
-
-  /*List allList = [];
-  allList.add(jsonGrid);
-  allList.add(jsonList);*/
 
   // Convertir la matrice en une chaîne JSON
   String jsonString = jsonEncode(jsonGrid);
