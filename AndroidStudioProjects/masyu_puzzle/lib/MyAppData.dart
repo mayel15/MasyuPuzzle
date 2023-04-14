@@ -41,6 +41,14 @@ class MyAppData {
   void setDifficulte(String d){
     difficulte = d;
   }
+
+  void ResetLine(){
+    lignes = [];
+  }
+
+  void ResetPos(){
+    position = [];
+  }
 }
 
 

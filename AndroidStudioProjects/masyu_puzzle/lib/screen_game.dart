@@ -168,6 +168,10 @@ class _MyScreenGame extends State<MyScreenGame> {
                                 child: ElevatedButton(
                                   onPressed: () {
                                     setState(() {
+                                      data.data.resetGrid();
+                                      data.ResetLine();
+                                      data.ResetPos();
+
                                     });
                                   },
                                   style: ElevatedButton.styleFrom(
