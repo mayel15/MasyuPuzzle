@@ -135,7 +135,11 @@ class Game {
     }
   }
 
-
+  void resetGrid() {
+    for (Line l in lines) {
+      l.linked = false;
+    }
+  }
   /*void checkNbvoisins(){
     for(int i=0; i<grid.listCells.length;i++){
       for(int j=0; j<grid.listCells.length;j++){
