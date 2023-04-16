@@ -1,7 +1,12 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:masyu_puzzle/MyAppData.dart';
+import 'package:masyu_puzzle/charge_game.dart';
+import 'package:masyu_puzzle/save_game.dart';
+
+import 'game.dart';
+import 'grid.dart'; // Importez le fichier où se trouve la fonction `getNumberOfGames()`
 
 class EnregistrePartie extends StatefulWidget {
   const EnregistrePartie({super.key});
@@ -11,11 +16,51 @@ class EnregistrePartie extends StatefulWidget {
 }
 
 class _EnregistrePartie extends State<EnregistrePartie> {
+  int numberOfGames =0;
+
+  @override
+  void initState() {
+    super.initState();
+    loadNumberOfGames();
+  }
+
+  void loadNumberOfGames() async {
+    numberOfGames = await getNumberOfGames();
+    setState(() {});
+  }
+
+
+  Future<void> loadGameAndNavigate(BuildContext context, int index) async {
+    setState(() async {
+      Game g = await chargeGame(index);
+      MyAppData data = MyAppData(g);
+      data.setTaille(g.grid.getlisteCellule().length);
+      if(data.taille == 4){
+        data.setDifficulte('Facile');
+      }
+      else if(data.taille == 5){
+        data.setDifficulte('Intermédiaire');
+      }
+      else if(data.taille == 6){
+        data.setDifficulte('Difficile');
+      }
+      else{
+        data.setDifficulte('Démoniaque');
+      }
+      Navigator.pushNamed(
+        context,
+        '/screengame',
+        arguments: data,
+      );
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     double largeurWidthEcran = MediaQuery.of(context).size.width;
     double hauteurHeightEcran = MediaQuery.of(context).size.height;
-
     return Scaffold(
       backgroundColor: Color(0xffEA5455),
       body: Column(
@@ -48,15 +93,46 @@ class _EnregistrePartie extends State<EnregistrePartie> {
               ),
             ),
           ),
-          SizedBox(height: hauteurHeightEcran*0.03),
+      SizedBox(height: hauteurHeightEcran*0.03),
+      Container(
+          width: double.infinity,
+          child: Column(
+            children: [
+              Text(
+                'Parties Enregistrées',
+                style: TextStyle(fontFamily: 'Langar', fontSize: 28),
+              ),
+            ],
+          ),
+        ),
           Expanded(
             child: Container(
-              width: double.infinity,
               child: Column(
                 children: [
-                  Text(
-                    'Parties Enregistrées',
-                    style: TextStyle(fontFamily: 'Langar', fontSize: 28),
+                  numberOfGames == null
+                      ? CircularProgressIndicator()
+                      : Expanded(
+                    child: ListView.builder(
+                      itemCount: numberOfGames,
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListTile(
+                          title: Text('Partie ${index + 1}',style: TextStyle(fontFamily: 'Langar',fontSize: 28),),
+                          trailing: Column(
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Color(0xFF002B5B),
+                                ),
+                                onPressed: () => loadGameAndNavigate(context, index),
+                                child: Text('Charger',style:TextStyle(fontFamily: 'Langar',fontSize: 23)),
+                              ),
+
+                            ],
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ],
               ),

@@ -7,6 +7,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:masyu_puzzle/MyAppData.dart';
 import 'package:masyu_puzzle/MyGrille.dart';
 import 'package:masyu_puzzle/game.dart';
+import 'package:masyu_puzzle/save_game.dart';
 
 class MyScreenGame extends StatefulWidget {
   const MyScreenGame({super.key});
@@ -146,6 +147,16 @@ class _MyScreenGame extends State<MyScreenGame> {
                             borderRadius: BorderRadius.circular(15.0),
                             child: ElevatedButton(
                               onPressed: () {
+                                final _snackBar = SnackBar(
+                                  content: const Text('Parties enregistrée !'),
+                                  backgroundColor: const Color(0xFF002B5B),
+                                  padding: const EdgeInsets.all(15.0),
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                                );
+                                ScaffoldMessenger.of(context).showSnackBar(_snackBar);
+                                saveGame(data.data);
+
                               },
                               style: ElevatedButton.styleFrom(
                                   shape: const StadiumBorder(),

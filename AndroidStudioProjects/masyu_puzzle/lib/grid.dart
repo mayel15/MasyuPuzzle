@@ -80,6 +80,48 @@ class Grid{
     }
   }
 
+  bool isGridSolvable(List<List<Cell>> grid) {
+    bool hasChanged;
+    List<List<Cell>> newGrid = List.from(grid);
+
+    do {
+      hasChanged = false;
+
+      for (int row = 0; row < newGrid.length; row++) {
+        for (int col = 0; col < newGrid[row].length; col++) {
+          Cell currentCell = newGrid[row][col];
+
+          if (currentCell.color == CellType.none) {
+            continue;
+          }
+
+          // Appliquer des règles de résolution spécifiques pour les cellules blanches et noires.
+          if (currentCell.color == CellType.white) {
+            // Règles pour les cellules blanches...
+          } else if (currentCell.color == CellType.black) {
+            // Règles pour les cellules noires...
+          }
+
+          // Vérifier si des modifications ont été apportées lors de l'application des règles de résolution.
+          if (!hasChanged) {
+            hasChanged = true;
+          }
+        }
+      }
+    } while (hasChanged);
+
+    // Vérifier si toutes les cellules ont été correctement résolues.
+    for (int row = 0; row < newGrid.length; row++) {
+      for (int col = 0; col < newGrid[row].length; col++) {
+        if (newGrid[row][col].color == CellType.none) {
+          return false;
+        }
+      }
+    }
+
+    return true;
+  }
+
   void setListeCellule(List<List<Cell>> newListCell){
      listCells = newListCell;
   }
